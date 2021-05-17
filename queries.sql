@@ -34,3 +34,5 @@ SELECT department_id FROM departments WHERE (SELECT COUNT(employee_id) FROM empl
 
 ## 2
 SELECT country_id FROM countries
+-------------
+SELECT countries.country_id, (SELECT COUNT(department_id) FROM departments JOIN locations USING (location_id) WHERE locations.country_id = countries.country_id) FROM countries;
