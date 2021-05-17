@@ -24,3 +24,13 @@ SELECT department_id, last_name, job_id FROM employees WHERE department_id = (SE
 
 ## 7
 SELECT employee_id, last_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees) AND department_id IN (SELECT department_id FROM employees WHERE last_name LIKE '%u%');
+
+
+# Lektion A7
+## 1
+SELECT department_id FROM departments
+MINUS
+SELECT department_id FROM departments WHERE (SELECT COUNT(employee_id) FROM employees WHERE employees.department_id = departments.department_id AND job_id = 'ST_CLERK') > 0;
+
+## 2
+SELECT country_id FROM countries
