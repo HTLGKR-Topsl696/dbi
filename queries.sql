@@ -452,6 +452,49 @@ MINUS
 SELECT department_id FROM departments WHERE (SELECT COUNT(employee_id) FROM employees WHERE employees.department_id = departments.department_id AND job_id = 'ST_CLERK') > 0;
 
 ## 2
-SELECT country_id FROM countries
--------------
-SELECT countries.country_id, (SELECT COUNT(department_id) FROM departments JOIN locations USING (location_id) WHERE locations.country_id = countries.country_id) FROM countries;
+SELECT country_id, country_name FROM countries
+MINUS
+SELECT country_id, c.country_name FROM departments JOIN locations l USING (location_id) JOIN countries c USING (country_id);
+
+## 3
+COLUMN sort NOPRINT;
+SELECT job_id, department_id, DECODE(department_id, 10, 1, 50, 2, 20, 3, 0) AS sort FROM employees
+MINUS
+SELECT job_id, department_id, 0 AS sort FROM employees WHERE department_id IS NULL OR department_id NOT IN (10,20,50)
+ORDER BY sort;
+
+## 4
+SELECT employee_id, job_id FROM employees;
+INTERSECT
+SELECT employee_id, job_id FROM job_history;
+
+## 5
+SELECT last_name, department_id, department_name FROM employees
+LEFT OUTER JOIN departments USING (department_id)
+UNION
+SELECT '', department_id, department_name FROM departments;
+
+# Lektion 8
+## 3
+INSERT INTO MY_EMPLOYEE VALUES (1, 'Patel', 'Ralph', 'rpatel', 895);
+
+## 4
+INSERT INTO MY_EMPLOYEE (id, last_name, first_name, userid, salary) VALUES (2, 'Dancs', 'Betty', 'bdancs', 860);
+
+## 5
+SELECT * FROM MY_EMPLOYEE;
+
+## 6
+DEFINE employee_id = &employee_id;
+DEFINE first_name = &first_name;
+DEFINE last_name = &last_name;
+INSERT INTO MY_EMPLOYEE VALUES (&&employee_id, '&&last_name', '&&first_name', LOWER(SUBSTR('&&first_name',1,1) || SUBSTR('&&last_name',1,7)), &salary);
+UNDEFINE employee_id;
+UNDEFINE first_name;
+UNDEFINE last_name;
+
+## 9
+COMMIT;
+
+## 10
+UPDATE MY_EMPLOYEE SET last_name = 'Drexler' WHERE id = 3;
