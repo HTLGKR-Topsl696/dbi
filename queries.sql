@@ -498,3 +498,100 @@ COMMIT;
 
 ## 10
 UPDATE MY_EMPLOYEE SET last_name = 'Drexler' WHERE id = 3;
+
+## 11
+UPDATE employees SET salary = 1000 WHERE salary < 900
+
+
+
+--A8 Ü1
+-- -
+
+--A8 Ü2
+describe my_employee;
+
+
+--A8 Ü3
+
+INSERT INTO my_employee
+VALUES (1,'Patel','Ralph','rpatel',895);
+
+--A8 Ü4
+
+
+INSERT INTO my_employee(id, last_name, first_name, userid, salary)
+VALUES (2, 'Dancs','Betty','bdancs',860);
+
+--A8 Ü5
+
+SELECT * from my_employee;
+
+
+--A8 Ü6
+
+DEFINE id_var = &id_var;
+DEFINE last_name_var = &last_name_var;
+DEFINE first_name_var = &first_name_var;
+DEFINE salary_var = &salary_var;
+
+INSERT INTO my_employee(id, last_name, first_name, userid, salary)
+VALUES (&id_var,'&last_name_var','&first_name_var', LOWER(SUBSTR('&first_name_var',1,1)||SUBSTR('&last_name_var',1,7)),&salary_var);
+
+UNDEFINE last_name_var;
+UNDEFINE first_name_var;
+UNDEFINE id_var;
+UNDEFINE salary_var;
+
+--A8 Ü7
+-- -
+
+--A8 Ü8
+select * from my_employee;
+
+--A8 Ü9
+commit;
+
+--A8 Ü10
+UPDATE my_employee
+SET last_name='Drexler'
+WHERE id=3;
+
+--A8 Ü11
+UPDATE my_employee
+SET salary=1000
+WHERE salary<900;
+
+--A8 Ü12
+select * from my_employee;
+
+--A8 Ü13
+delete from my_employee
+WHERE id=2;
+
+--A8 Ü14
+select * from my_employee;
+
+--A8 Ü15
+commit;
+
+--A8 Ü16
+-- -
+
+--A8 Ü17
+select * from my_employee;
+
+--A8 Ü18
+savepoint my_employee_sp;
+
+--A8 Ü19
+delete from my_employee;
+
+--A8 Ü20
+select * from my_employee;
+
+--A8 Ü21
+rollback;
+
+--A8 Ü22
+commit;
+
