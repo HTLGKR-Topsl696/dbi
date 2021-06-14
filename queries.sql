@@ -595,3 +595,51 @@ rollback;
 --A8 Ü22
 commit;
 
+
+
+
+# Lektion 9
+## 1
+CREATE TABLE DEPT (
+  ID NUMBER(7),
+  NAME VARCHAR2(25),
+  
+  CONSTRAINT DEPT_PK PRIMARY KEY (ID)
+);
+
+## 2
+INSERT INTO DEPT (
+    SELECT department_id, department_name FROM departments
+);
+
+## 3
+CREATE TABLE EMP (
+    ID NUMBER(7),
+    LAST_NAME VARCHAR2(25),
+    FIRST_NAME VARCHAR2(25),
+    DEPT_ID NUMBER(7),
+    
+    CONSTRAINT DEPT_ID_FK FOREIGN KEY (DEPT_ID) REFERENCES DEPT(ID)
+);
+
+## 4
+CREATE TABLE EMPLOYEES2 AS
+SELECT employee_id AS id, first_name, last_name, salary, department_id AS dept_id FROM employees;
+
+## 5
+DROP TABLE EMP;
+DROP TABLE EMPLOYEES2;
+
+## 6
+CREATE TABLE EMPLOYEES2 (
+    ID NUMBER(6),
+    FIRST_NAME VARCHAR2(25),
+    LAST_NAME VARCHAR2(25),
+    SALARY NUMBER(6),
+    DEPT_ID NUMBER(4),
+
+    CONSTRAINT EMPLOYEES2_PK PRIMARY KEY (ID)
+);
+
+## 7
+DROP TABLE EMPLOYEES2;
