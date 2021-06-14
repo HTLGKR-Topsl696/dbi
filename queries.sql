@@ -643,3 +643,7 @@ CREATE TABLE EMPLOYEES2 (
 
 ## 7
 DROP TABLE EMPLOYEES2;
+
+# Lektion 10
+## 1
+CREATE VIEW EMPLOYEES_VU AS SELECT employee_id, last_name AS employee, department_id FROM employees;
