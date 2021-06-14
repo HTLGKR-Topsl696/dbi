@@ -644,6 +644,30 @@ CREATE TABLE EMPLOYEES2 (
 ## 7
 DROP TABLE EMPLOYEES2;
 
+
+
 # Lektion 10
+
 ## 1
 CREATE VIEW EMPLOYEES_VU AS SELECT employee_id, last_name AS employee, department_id FROM employees;
+
+## 2
+SELECT * FROM EMPLOYEES_VU;
+
+## 3
+SELECT employee, department_id FROM EMPLOYEES_VU;
+
+## 4
+CREATE VIEW empvu50 AS SELECT employee_id AS empno, last_name AS employee, department_id AS deptno FROM employees WHERE department_id = 50 WITH CHECK OPTION CONSTRAINT empvu50;
+
+## 5
+DESC empvu50;
+
+## 6
+UPDATE empvu50 SET deptno = 80 WHERE employee='Matos';
+FEHLER in Zeile 1:
+ORA-01402: Verletzung der WHERE-Klausel einer View WITH CHECK OPTION
+
+## 7
+CREATE SEQUENCE dept_pk INCREMENT BY 10 START WITH 200
+
