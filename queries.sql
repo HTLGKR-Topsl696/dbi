@@ -684,7 +684,7 @@ VALUES (dept_id_seq, 'Administration');
 CREATE INDEX dept_deptname_index
 ON dept (name);
 
-10.10
+10.10 
 
 CREATE SYNONYM emp
 FOR employees;
