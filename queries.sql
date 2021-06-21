@@ -671,3 +671,58 @@ ORA-01402: Verletzung der WHERE-Klausel einer View WITH CHECK OPTION
 ## 7
 CREATE SEQUENCE dept_pk INCREMENT BY 10 START WITH 200
 
+10.08
+
+INSERT INTO dept
+VALUES (dept_id_seq, 'Education');
+
+INSERT INTO dept
+VALUES (dept_id_seq, 'Administration');
+
+10.09
+
+CREATE INDEX dept_deptname_index
+ON dept (name);
+
+10.10
+
+CREATE SYNONYM emp
+FOR employees;
+11.01
+
+SELECT column_name, data_type, data_length, data_precision AS precision, data_scale AS scale, nullable
+FROM user_tab_columns
+WHERE LOWER(table_name) = 'departments';
+
+11.02
+
+SELECT col.column_name, constraint_name, con.constraint_type AS con, con.search_condition, con.status
+FROM user_constraints con
+JOIN user_cons_columns col USING (constraint_name)
+WHERE LOWER(col.table_name) = '&table';
+
+11.03
+
+COMMENT ON TABLE departments
+IS 'Company department information including name, code and location.';
+
+SELECT comments
+FROM user_tab_comments
+WHERE LOWER(table_name) = 'departments';
+
+11.04
+
+SELECT synonym_name, table_owner, table_name, db_link
+FROM user_synonyms;
+
+11.05
+
+SET LONG 100000
+
+SELECT view_name, text
+FROM user_views;
+
+11.06
+
+SELECT sequence_name, max_value, increment_by, last_number
+FROM user_sequences;
