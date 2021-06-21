@@ -726,3 +726,25 @@ FROM user_views;
 
 SELECT sequence_name, max_value, increment_by, last_number
 FROM user_sequences;
+
+
+
+# Lektion B1
+## 1
+CREATE SESSION (Systemprivileg)
+
+## 2
+CREATE ANY TABLE
+
+## 3
+Nur ich
+
+## 4
+Rollen
+
+## 5
+ALTER USER user IDENTIFIED BY password;
+
+## 6
+
+
